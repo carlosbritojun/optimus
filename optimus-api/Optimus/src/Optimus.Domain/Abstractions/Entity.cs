@@ -6,5 +6,5 @@ public abstract class Entity
 
     protected Entity(Guid id) => Id = id;
 
-    private Entity() { }
+    protected Entity() { }
 }
