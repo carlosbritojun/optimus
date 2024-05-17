@@ -1,5 +1,4 @@
 ﻿using Optimus.Domain.Abstractions;
-using Optimus.Domain.Entities.Customers;
 using Optimus.Domain.Shared;
 
 namespace Optimus.Domain.Entities.Products;
