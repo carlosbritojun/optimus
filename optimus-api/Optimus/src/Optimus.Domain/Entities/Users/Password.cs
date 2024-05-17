@@ -1,6 +1,15 @@
-﻿namespace Optimus.Domain.Entities.Users
+﻿using Cypher = BCrypt.Net;
+
+namespace Optimus.Domain.Entities.Users;
+
+public sealed record Password
 {
-    public class Password
+    public string Value { get; }
+
+    public Password(string value)
     {
+        Value = Cypher.BCrypt.HashPassword(value);
     }
+
+    public bool VerificarHash(string password) => Cypher.BCrypt.Verify(password, this.Value);
 }
