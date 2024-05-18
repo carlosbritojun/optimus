@@ -25,10 +25,26 @@ public sealed class CustomerRepository : ICustomerRepository
             .AnyAsync(customer => customer.Cpf == cpf);
     }
 
+    public async Task<bool> CpfExistsAsync(Guid excludedId, Cpf cpf, CancellationToken token = default)
+    {
+        return await _context.Set<Customer>()
+            .AsNoTracking()
+            .Where(customer => customer.Id != excludedId)
+            .AnyAsync(customer => customer.Cpf == cpf);
+    }
+
     public async Task<bool> EmailExistsAsync(Email email, CancellationToken token = default)
     {
         return await _context.Set<Customer>()
             .AsNoTracking()
+            .AnyAsync(customer => customer.Email == email);
+    }
+
+    public async Task<bool> EmailExistsAsync(Guid excludedId, Email email, CancellationToken token = default)
+    {
+        return await _context.Set<Customer>()
+            .AsNoTracking()
+            .Where(customer => customer.Id != excludedId)
             .AnyAsync(customer => customer.Email == email);
     }
 

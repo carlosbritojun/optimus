@@ -22,12 +22,12 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustome
         var email = new Email(request.Email);
         var cpf = new Cpf(request.Cpf);
 
-        if (await _repository.EmailExistsAsync(email))
+        if (await _repository.EmailExistsAsync(request.Id, email))
         {
             return Result.Fail(CustomerErrors.EmailExists(email));
         }
 
-        if (await _repository.CpfExistsAsync(cpf))
+        if (await _repository.CpfExistsAsync(request.Id, cpf))
         {
             return Result.Fail(CustomerErrors.CpfExists(cpf));
         }
@@ -41,7 +41,7 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustome
 
         customer.ChangeBasicInfo(
             new Name(request.Name), 
-            new Email(request.Name), 
+            new Email(request.Email), 
             new Cpf(request.Cpf), 
             new Comments(request.Comments ?? string.Empty));
 

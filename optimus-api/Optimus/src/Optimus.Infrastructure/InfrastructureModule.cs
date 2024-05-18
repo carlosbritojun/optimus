@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Optimus.Domain.Abstractions;
 using Optimus.Domain.Entities.Customers;
 using Optimus.Domain.Entities.Products;
+using Optimus.Domain.Entities.Users;
 using Optimus.Infrastructure.Data;
 using Optimus.Infrastructure.Data.Repositories;
 
@@ -32,7 +33,8 @@ public static class InfrastructureModule
 
         services
             .AddScoped<ICustomerRepository, CustomerRepository>()
-            .AddScoped<IProductRepository, ProductRepository>();
+            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<OptimusDbContext>());
 

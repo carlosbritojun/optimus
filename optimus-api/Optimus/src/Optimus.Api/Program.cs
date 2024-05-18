@@ -1,4 +1,5 @@
 using Optimus.Api.Configuration;
+using Optimus.Api.Extensions;
 using Optimus.Application;
 using Optimus.Infrastructure;
 using System.Globalization;
@@ -31,6 +32,8 @@ if (app.Environment.IsDevelopment())
             options.SwaggerEndpoint($"/swagger/{api.GroupName}/swagger.json", api.GroupName.ToUpperInvariant());
         }
     });
+
+    //app.ApplyMigrations();
 }
 
 app.UseAuthorization();
