@@ -3,9 +3,9 @@ using Optimus.Api.Controllers.Products.V1.Models;
 
 namespace Optimus.Api.Controllers.Products.V1.Validations;
 
-public class CreateProductRequestValidator : AbstractValidator<CreateProductRequest>
+public class UpdateProductRequestValidator : AbstractValidator<UpdateProductRequest>
 {
-    public CreateProductRequestValidator()
+    public UpdateProductRequestValidator()
     {
         RuleFor(product => product.Name)
             .NotNull()

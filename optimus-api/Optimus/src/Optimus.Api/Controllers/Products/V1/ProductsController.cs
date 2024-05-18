@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Optimus.Api.Configuration;
+using Optimus.Api.Controllers.Products.V1.Models;
 using Optimus.Api.Shared;
 using Optimus.Application.Features.Products.GetAll;
 using Optimus.Application.Features.Products.GetById;
@@ -55,9 +56,20 @@ public class ProductsController : OptimusBusControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Update(Guid id, [FromBody] object request, CancellationToken token = default)
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductRequest request, CancellationToken token = default)
     {
-        return NoContent();
+        var command = request.ToCommand() with { Id = id };
+
+        var result = await MemoryBus.Send(command, token);
+
+        if (result.HasError<EntityNotFoundError>())
+        {
+            return NotFound();
+        }
+
+        return result.IsFailed
+            ? BadRequest(result.ToProblemDetails())
+            : NoContent();
     }
 
     [HttpDelete("{id}")]

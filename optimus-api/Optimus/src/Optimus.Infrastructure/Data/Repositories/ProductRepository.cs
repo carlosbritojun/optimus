@@ -31,10 +31,23 @@ public sealed class ProductRepository : IProductRepository
             .AnyAsync(product => product.Name == name, token);
     }
 
+    public async Task<bool> NameExistsAsync(Guid excludedId, Name name, CancellationToken token = default)
+    {
+        return await _context
+            .Set<Product>()
+            .Where(product => product.Id != excludedId)
+            .AnyAsync(product => product.Name == name, token);
+    }
+
     public async Task<Product?> GetByIdAsync(Guid id, CancellationToken token = default)
     {
         return await _context
             .Set<Product>()
             .FirstOrDefaultAsync(product => product.Id == id, token);
+    }
+
+    public void Update(Product product)
+    {
+        _context.Set<Product>().Update(product);
     }
 }

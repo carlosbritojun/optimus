@@ -18,10 +18,16 @@ public static class ValidatorConfiguration
 
     private static IServiceCollection AddV1Validators(this IServiceCollection services)
     {
+        #region V1 Customers
         services.AddValidatorsFromAssemblyContaining<V1Customers.CreateCustomerRequestValidator>();
         services.AddValidatorsFromAssemblyContaining<V1Customers.UpdateCustomerRequestValidator>();
+        #endregion
 
+        #region V1 Products
         services.AddValidatorsFromAssemblyContaining<V1Product.CreateProductRequestValidator>();
+        services.AddValidatorsFromAssemblyContaining<V1Product.UpdateProductRequestValidator>();
+        #endregion
+
         return services;
     }
 

@@ -1,6 +1,6 @@
 ﻿using Optimus.Application.Features.Products.Create;
 
-namespace Optimus.Api.Controllers.Products.V1;
+namespace Optimus.Api.Controllers.Products.V1.Models;
 
 public sealed record CreateProductRequest(
     string Name,
