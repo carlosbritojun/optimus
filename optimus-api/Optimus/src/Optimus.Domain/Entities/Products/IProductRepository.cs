@@ -6,4 +6,5 @@ public interface IProductRepository
 {
     Task AddAsync(Product product, CancellationToken tojen = default);
     Task<bool> NameExistsAsync(Name name, CancellationToken token = default);
+    Task<Product?> GetByIdAsync(Guid id, CancellationToken token = default);
 }

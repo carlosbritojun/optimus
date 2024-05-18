@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Optimus.Api.Configuration;
 using Optimus.Api.Shared;
+using Optimus.Application.Features.Products.GetById;
+using Optimus.Domain.Shared.Errors;
 
 namespace Optimus.Api.Controllers.Products.V1;
 
@@ -27,7 +29,13 @@ public class ProductsController : OptimusBusControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken token = default)
     {
-        return Ok();
+        var query = new GetByIdProductQuery(id);
+
+        var result = await MemoryBus.Send(query, token);
+
+        return result.HasError<EntityNotFoundError>()
+            ? NotFound()
+            : Ok(result.Value);
     }
 
     [HttpPost]
@@ -35,7 +43,7 @@ public class ProductsController : OptimusBusControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Add([FromBody] CreateProductRequest request, CancellationToken token = default)
     {
-        var result = await MemoryBus.Send(request.ToCommand());
+        var result = await MemoryBus.Send(request.ToCommand(), token);
 
         return result.IsFailed
             ? BadRequest(result.ToProblemDetails())

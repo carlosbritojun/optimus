@@ -1,4 +1,4 @@
-﻿namespace Optimus.Api.Controllers.Products.V1;
+﻿namespace Optimus.Application.Features.Products.GetById;
 
 public sealed record ProductResponse(
     Guid Id,

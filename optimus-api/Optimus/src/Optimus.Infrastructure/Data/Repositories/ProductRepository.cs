@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Optimus.Infrastructure.Data.Repositories;
 
@@ -28,5 +29,12 @@ public sealed class ProductRepository : IProductRepository
         return await _context
             .Set<Product>()
             .AnyAsync(product => product.Name == name, token);
+    }
+
+    public async Task<Product?> GetByIdAsync(Guid id, CancellationToken token = default)
+    {
+        return await _context
+            .Set<Product>()
+            .FirstOrDefaultAsync(product => product.Id == id, token);
     }
 }
