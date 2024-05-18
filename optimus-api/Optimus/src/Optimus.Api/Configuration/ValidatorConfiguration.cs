@@ -1,7 +1,8 @@
 ﻿using Caelum.Stella.CSharp.Validation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using V1 = Optimus.Api.Controllers.Customers.V1;
+using V1Customers = Optimus.Api.Controllers.Customers.V1.Validations;
+using V1Product = Optimus.Api.Controllers.Products.V1.Validations;
 
 namespace Optimus.Api.Configuration;
 
@@ -17,7 +18,10 @@ public static class ValidatorConfiguration
 
     private static IServiceCollection AddV1Validators(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssemblyContaining<V1.Validatons.CreateCustomerRequestValidator>();
+        services.AddValidatorsFromAssemblyContaining<V1Customers.CreateCustomerRequestValidator>();
+        services.AddValidatorsFromAssemblyContaining<V1Customers.UpdateCustomerRequestValidator>();
+
+        services.AddValidatorsFromAssemblyContaining<V1Product.CreateProductRequestValidator>();
         return services;
     }
 

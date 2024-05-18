@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Optimus.Domain.Abstractions;
 using Optimus.Domain.Entities.Customers;
+using Optimus.Domain.Entities.Products;
 using Optimus.Infrastructure.Data;
 using Optimus.Infrastructure.Data.Repositories;
 
@@ -29,7 +30,10 @@ public static class InfrastructureModule
                 .UseSnakeCaseNamingConvention();
         });
 
-        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services
+            .AddScoped<ICustomerRepository, CustomerRepository>()
+            .AddScoped<IProductRepository, ProductRepository>();
+
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<OptimusDbContext>());
 
         return services;

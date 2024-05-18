@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Optimus.Infrastructure\Optimus.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Products\V1\Models\" />
+  </ItemGroup>
+
 </Project>

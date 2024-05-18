@@ -2,7 +2,7 @@
 using Optimus.Api.Configuration;
 using Optimus.Api.Controllers.Customers.V1.Models;
 
-namespace Optimus.Api.Controllers.Customers.V1.Validatons;
+namespace Optimus.Api.Controllers.Customers.V1.Validations;
 
 public class CreateCustomerRequestValidator : AbstractValidator<CreateCustomerRequest>
 {

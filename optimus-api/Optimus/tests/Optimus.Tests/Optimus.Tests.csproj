@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Optimus.Domain\Optimus.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Optimus.Domain\Optimus.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

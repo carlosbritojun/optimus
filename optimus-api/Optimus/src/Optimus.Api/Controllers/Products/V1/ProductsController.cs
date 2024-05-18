@@ -1,13 +1,20 @@
 ﻿using Asp.Versioning;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Optimus.Api.Configuration;
+using Optimus.Api.Shared;
 
 namespace Optimus.Api.Controllers.Products.V1;
 
 [ApiVersion("1.0")]
 [ApiController]
 [Route("api/v{version:apiVersion}/products")]
-public class ProductsController : ControllerBase
+public class ProductsController : OptimusBusControllerBase
 {
+    public ProductsController(ISender sender) : base(sender)
+    {
+    }
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(CancellationToken token = default)
@@ -26,9 +33,13 @@ public class ProductsController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Add([FromBody] object request, CancellationToken token = default)
+    public async Task<IActionResult> Add([FromBody] CreateProductRequest request, CancellationToken token = default)
     {
-        return NoContent();
+        var result = await MemoryBus.Send(request.ToCommand());
+
+        return result.IsFailed
+            ? BadRequest(result.ToProblemDetails())
+            : CreatedAtAction(nameof(GetById), new { id = result.Value }, request);
     }
 
     [HttpPut("{id}")]

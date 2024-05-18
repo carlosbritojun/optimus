@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+﻿using Optimus.Application.Features.Products.Create;
 
 namespace Optimus.Api.Controllers.Products.V1;
 
@@ -7,4 +7,7 @@ public sealed record CreateProductRequest(
     int QuantityInStock,
     decimal CostPrice,
     decimal SalePrice,
-    string? Comments);
+    string? Comments)
+{
+    public CreateProductCommand ToCommand() => new(Name, QuantityInStock, CostPrice, SalePrice, Comments);
+}
