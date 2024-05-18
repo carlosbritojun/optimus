@@ -20,15 +20,18 @@ public class CustomersController : OptimusBusControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<CustomerListResponse>>> GetAll(CancellationToken token = default)
+    public async Task<ActionResult<IEnumerable<CustomerListApiResponse>>> GetAll(CancellationToken token = default)
     {
-        return Ok(await MemoryBus.Send(new GetAllCustomersQuery(), token));
+        var customers = await MemoryBus.Send(new GetAllCustomersQuery(), token);
+        var result = customers.Select(customer => CustomerListApiResponse.From(customer));
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CustomerResponse>> GetById(Guid id, CancellationToken token = default)
+    public async Task<ActionResult<CustomerApiResponse>> GetById(Guid id, CancellationToken token = default)
     {
         var query = new GetByIdCustomerQuery(id);
 
@@ -36,7 +39,7 @@ public class CustomersController : OptimusBusControllerBase
 
         return result.HasError<EntityNotFoundError>()
             ? NotFound()
-            : Ok(result.Value);
+            : Ok(CustomerApiResponse.From(result.Value));
     }
 
     [HttpPost]

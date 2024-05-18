@@ -22,15 +22,18 @@ public class ProductsController : OptimusBusControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<ProductListResponse>>> GetAll(CancellationToken token = default)
+    public async Task<ActionResult<IEnumerable<ProductListApiResponse>>> GetAll(CancellationToken token = default)
     {
-        return Ok(await MemoryBus.Send(new GetAllProductsQuery(), token));
+        var products = await MemoryBus.Send(new GetAllProductsQuery(), token);
+        var result = products.Select(product => ProductListApiResponse.From(product));
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetById(Guid id, CancellationToken token = default)
+    public async Task<ActionResult<ProductApiResponse>> GetById(Guid id, CancellationToken token = default)
     {
         var query = new GetByIdProductQuery(id);
 
@@ -38,7 +41,7 @@ public class ProductsController : OptimusBusControllerBase
 
         return result.HasError<EntityNotFoundError>()
             ? NotFound()
-            : Ok(result.Value);
+            : Ok(ProductApiResponse.From(result.Value));
     }
 
     [HttpPost]
