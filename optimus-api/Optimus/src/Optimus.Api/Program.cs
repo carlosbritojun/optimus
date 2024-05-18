@@ -36,6 +36,8 @@ if (app.Environment.IsDevelopment())
     //app.ApplyMigrations();
 }
 
+app.UseCustomExceptionHandler();
+
 app.UseAuthorization();
 
 app.MapControllers();

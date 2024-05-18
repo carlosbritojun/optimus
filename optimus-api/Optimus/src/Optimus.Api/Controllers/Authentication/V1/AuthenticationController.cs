@@ -19,7 +19,7 @@ public class AuthenticationController : OptimusBusControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GenerateToken([FromBody] LoginUserRequest request, CancellationToken token = default)
+    public async Task<IActionResult> Login([FromBody] LoginUserRequest request, CancellationToken token = default)
     {
         var response = await MemoryBus.Send(request.ToCommand(), token);
 

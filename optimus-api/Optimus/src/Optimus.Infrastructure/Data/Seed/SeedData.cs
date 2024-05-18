@@ -22,9 +22,13 @@ internal static class SeedData
         var password = new Password("1234");
         password.GenerateHash();
 
+        var inactiveUser = new User(Guid.NewGuid(), new Email("inativo@optimus.com"), EProfile.Operator, password);
+        inactiveUser.Inactivate();
+
         User[] users = [
             new (Guid.NewGuid(), new Email("admin@optimus.com"), EProfile.Administrator, password),
-            new (Guid.NewGuid(), new Email("operador@optimus.com"), EProfile.Operator, password)
+            new (Guid.NewGuid(), new Email("operador@optimus.com"), EProfile.Operator, password),
+            inactiveUser
         ];
 
         modelBuilder.Entity<User>().HasData(users);

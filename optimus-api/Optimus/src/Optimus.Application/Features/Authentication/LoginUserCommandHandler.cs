@@ -25,6 +25,11 @@ internal sealed class LoginUserCommandHandler : IRequestHandler<LoginUserCommand
             return Result.Fail(UserErrors.NotFound);
         }
 
+        if (!user.IsActive())
+        {
+            return Result.Fail(UserErrors.IsInactive);
+        }
+
         if (!user.CheckPassword(request.Password))
         {
             return Result.Fail(UserErrors.Password);
