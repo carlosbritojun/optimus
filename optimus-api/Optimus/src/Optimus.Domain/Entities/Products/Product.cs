@@ -15,6 +15,7 @@ public sealed class Product : Entity
         CostPrice = costPrice;
         SalePrice = salePrice;
         Comments = comments;
+        CreatedAt = DateTime.UtcNow;
     }
 
     public Name Name { get; private set; }
