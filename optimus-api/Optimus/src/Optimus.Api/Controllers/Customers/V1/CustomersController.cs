@@ -22,7 +22,7 @@ public class CustomersController : OptimusBusControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<CustomerListResponse>>> GetAll(CancellationToken token = default)
     {
-        return Ok(await MemoryBus.Send(new GetAllCustomersQuery()));
+        return Ok(await MemoryBus.Send(new GetAllCustomersQuery(), token));
     }
 
     [HttpGet("{id}")]
@@ -32,7 +32,7 @@ public class CustomersController : OptimusBusControllerBase
     {
         var query = new GetByIdCustomerQuery(id);
 
-        var result = await MemoryBus.Send(query);
+        var result = await MemoryBus.Send(query, token);
 
         return result.HasError<EntityNotFoundError>()
             ? NotFound()
@@ -44,7 +44,7 @@ public class CustomersController : OptimusBusControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Add([FromBody] CreateCustomerRequest request, CancellationToken token = default)
     {
-        var result = await MemoryBus.Send(request.ToCommand());
+        var result = await MemoryBus.Send(request.ToCommand(), token);
 
         return result.IsFailed
             ? BadRequest(result.ToProblemDetails())
@@ -59,7 +59,7 @@ public class CustomersController : OptimusBusControllerBase
     {
         var command = request.ToCommand() with { Id = id };
 
-        var result = await MemoryBus.Send(command);
+        var result = await MemoryBus.Send(command, token);
 
         if (result.HasError<EntityNotFoundError>())
         {
@@ -78,7 +78,7 @@ public class CustomersController : OptimusBusControllerBase
     {
         var command = new RemoveCustomerCommand(id);
 
-        var result = await MemoryBus.Send(command);
+        var result = await MemoryBus.Send(command, token);
 
         return result.HasError<EntityNotFoundError>()
             ? NotFound()
