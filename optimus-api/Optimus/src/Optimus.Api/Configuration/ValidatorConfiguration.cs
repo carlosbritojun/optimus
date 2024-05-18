@@ -1,8 +1,10 @@
 ﻿using Caelum.Stella.CSharp.Validation;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+
 using V1Customers = Optimus.Api.Controllers.Customers.V1.Validations;
 using V1Product = Optimus.Api.Controllers.Products.V1.Validations;
+using V1Authentication = Optimus.Api.Controllers.Authentication.V1.Validations;
 
 namespace Optimus.Api.Configuration;
 
@@ -26,6 +28,10 @@ public static class ValidatorConfiguration
         #region V1 Products
         services.AddValidatorsFromAssemblyContaining<V1Product.CreateProductRequestValidator>();
         services.AddValidatorsFromAssemblyContaining<V1Product.UpdateProductRequestValidator>();
+        #endregion
+
+        #region V1 Authentication
+        services.AddValidatorsFromAssemblyContaining<V1Authentication.LoginUserRequestValidator>();
         #endregion
 
         return services;

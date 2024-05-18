@@ -32,6 +32,7 @@ internal sealed class LoginUserCommandHandler : IRequestHandler<LoginUserCommand
 
         return Result.Ok(new UserResponse(
             user.Id,
-            user.Email.Address));
+            user.Email.Address,
+            user.Profile.ToString()));
     }
 }

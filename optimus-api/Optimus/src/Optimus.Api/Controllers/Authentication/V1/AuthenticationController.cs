@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Optimus.Api.Configuration;
+using Optimus.Api.Controllers.Authentication.V1.Models;
 using Optimus.Api.Shared;
 
 namespace Optimus.Api.Controllers.Authentication.V1;
