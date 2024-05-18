@@ -10,4 +10,5 @@ public interface IProductRepository
     Task<Product?> GetByIdAsync(Guid id, CancellationToken token = default);
 
     void Update(Product product);
+    void Remove(Product product);
 }

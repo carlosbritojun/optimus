@@ -50,4 +50,9 @@ public sealed class ProductRepository : IProductRepository
     {
         _context.Set<Product>().Update(product);
     }
+
+    public void Remove(Product product)
+    {
+        _context.Set<Product>().Remove(product);
+    }
 }

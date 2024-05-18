@@ -6,6 +6,7 @@ using Optimus.Api.Controllers.Products.V1.Models;
 using Optimus.Api.Shared;
 using Optimus.Application.Features.Products.GetAll;
 using Optimus.Application.Features.Products.GetById;
+using Optimus.Application.Features.Products.Remove;
 using Optimus.Domain.Shared.Errors;
 
 namespace Optimus.Api.Controllers.Products.V1;
@@ -77,6 +78,12 @@ public class ProductsController : OptimusBusControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(Guid id, CancellationToken token = default)
     {
-        return NoContent();
+        var command = new RemoveProductCommand(id);
+
+        var result = await MemoryBus.Send(command, token);
+
+        return result.HasError<EntityNotFoundError>()
+            ? NotFound()
+            : NoContent();
     }
 }
