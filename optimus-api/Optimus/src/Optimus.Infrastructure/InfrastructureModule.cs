@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Optimus.Domain.Abstractions;
+using Optimus.Domain.Entities.Customers;
 using Optimus.Infrastructure.Data;
+using Optimus.Infrastructure.Data.Repositories;
 
 namespace Optimus.Infrastructure;
 
@@ -26,8 +29,9 @@ public static class InfrastructureModule
                 .UseSnakeCaseNamingConvention();
         });
 
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<OptimusDbContext>());
+
         return services;
     }
-
-
 }

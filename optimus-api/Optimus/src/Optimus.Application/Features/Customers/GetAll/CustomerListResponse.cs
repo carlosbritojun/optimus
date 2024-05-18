@@ -1,4 +1,4 @@
-﻿namespace Optimus.Api.Controllers.Customers.V1;
+﻿namespace Optimus.Application.Features.Customers.GetAll;
 
 public sealed record CustomerListResponse(
     Guid Id,

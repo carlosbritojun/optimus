@@ -1,9 +1,16 @@
 using Optimus.Api.Configuration;
+using Optimus.Application;
 using Optimus.Infrastructure;
+using System.Globalization;
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services
+    .AddValidators()
+    .AddApplication()
+    .AddInfrastructure(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
