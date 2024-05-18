@@ -34,5 +34,7 @@ public sealed class User : Entity
 
     public void BecomeOperator() => Profile = EProfile.Operator;
 
+    public bool CheckPassword(string password) => Password.Check(password);
+
     public override string ToString() =>  $"Id={Id} | Name={Email.Address}";
 }

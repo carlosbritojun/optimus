@@ -11,5 +11,5 @@ public sealed record Password
         Value = Cypher.BCrypt.HashPassword(value);
     }
 
-    public bool VerificarHash(string password) => Cypher.BCrypt.Verify(password, this.Value);
+    public bool Check(string password) => Cypher.BCrypt.Verify(password, this.Value);
 }
