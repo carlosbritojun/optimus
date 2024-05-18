@@ -14,7 +14,7 @@ internal static class SeedData
     {
         SeedDefaultUsers(modelBuilder);
         SeedProducts(modelBuilder);
-        //SeedCustomers(modelBuilder);
+        SeedCustomers(modelBuilder);
     }
 
     public static void SeedDefaultUsers(ModelBuilder modelBuilder)
@@ -32,10 +32,10 @@ internal static class SeedData
 
     public static void SeedProducts(ModelBuilder modelBuilder)
     {
-        var faker = new Faker("pt_BR");
-
         var products = Enumerable.Range(1, 20).Select(number =>
         {
+            var faker = new Faker("pt_BR");
+
             var cost = new Money(faker.Random.Int(5, 15));
 
             return new Product(
@@ -52,10 +52,10 @@ internal static class SeedData
 
     public static void SeedCustomers(ModelBuilder modelBuilder)
     {
-        var faker = new Faker("pt_BR");
-
-        var customers = Enumerable.Range(1, 10).Select(number =>
+        var customers = Enumerable.Range(1, 5).Select(number =>
         {
+            var faker = new Faker("pt_BR");
+
             return new Customer(
                 id: Guid.NewGuid(),
                 name: new Name(faker.Person.FullName),
