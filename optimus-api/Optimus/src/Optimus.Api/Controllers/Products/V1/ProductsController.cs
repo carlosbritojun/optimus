@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Optimus.Api.Configuration;
 using Optimus.Api.Shared;
+using Optimus.Application.Features.Products.GetAll;
 using Optimus.Application.Features.Products.GetById;
 using Optimus.Domain.Shared.Errors;
 
@@ -19,9 +20,9 @@ public class ProductsController : OptimusBusControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAll(CancellationToken token = default)
+    public async Task<ActionResult<IEnumerable<ProductListResponse>>> GetAll(CancellationToken token = default)
     {
-        return Ok();
+        return Ok(await MemoryBus.Send(new GetAllProductsQuery(), token));
     }
 
     [HttpGet("{id}")]

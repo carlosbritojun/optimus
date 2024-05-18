@@ -4,9 +4,9 @@ using Optimus.Domain.Entities.Products;
 
 namespace Optimus.Application.Features.Products.GetById;
 
-internal sealed class GetByIdProductCommandHandler : IRequestHandler<GetByIdProductQuery, Result<ProductResponse>>
+internal sealed class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, Result<ProductResponse>>
 {
-    public GetByIdProductCommandHandler(IProductRepository repository)
+    public GetByIdProductQueryHandler(IProductRepository repository)
     {
         _repository = repository;
     }
