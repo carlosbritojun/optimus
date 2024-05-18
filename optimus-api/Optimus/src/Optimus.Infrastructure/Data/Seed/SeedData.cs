@@ -10,21 +10,24 @@ namespace Optimus.Infrastructure.Data.Seed;
 
 internal static class SeedData
 {
-    private static readonly User[] _defaultUsers = [
-        new (Guid.NewGuid(), new Email("admin@optimus.com"), EProfile.Administrator, new Password("1234")),
-        new (Guid.NewGuid(), new Email("operator@optimus.com"), EProfile.Administrator, new Password("1234"))
-    ];
-
     public static void Seed(this ModelBuilder modelBuilder)
     {
         SeedDefaultUsers(modelBuilder);
-        //SeedProducts(modelBuilder);
+        SeedProducts(modelBuilder);
         //SeedCustomers(modelBuilder);
     }
 
     public static void SeedDefaultUsers(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().HasData(_defaultUsers);
+        var password = new Password("1234");
+        password.GenerateHash();
+
+        User[] users = [
+            new (Guid.NewGuid(), new Email("admin@optimus.com"), EProfile.Administrator, password),
+            new (Guid.NewGuid(), new Email("operador@optimus.com"), EProfile.Operator, password)
+        ];
+
+        modelBuilder.Entity<User>().HasData(users);
     }
 
     public static void SeedProducts(ModelBuilder modelBuilder)
@@ -33,7 +36,7 @@ internal static class SeedData
 
         var products = Enumerable.Range(1, 20).Select(number =>
         {
-            var cost = new Money(2 * faker.Random.Decimal(5, 15));
+            var cost = new Money(faker.Random.Int(5, 15));
 
             return new Product(
                 id: Guid.NewGuid(),

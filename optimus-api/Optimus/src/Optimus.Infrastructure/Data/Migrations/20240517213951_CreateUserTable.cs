@@ -34,8 +34,8 @@ namespace Optimus.Infrastructure.Data.Migrations
                 columns: new[] { "id", "created_at", "email", "inactivated_at", "password", "profile" },
                 values: new object[,]
                 {
-                    { new Guid("0985d355-7d6a-4ecb-8feb-1d3123aee5c5"), new DateTime(2024, 5, 17, 21, 39, 49, 623, DateTimeKind.Utc).AddTicks(7658), "admin@optimus.com", null, "$2b$10$QtMeC8P.cFXPRWmZjxzg4OoZrNv2B0/cZF2GzxyWHs55U6EPl2saO", 0 },
-                    { new Guid("0eacaa2e-a7dd-4db9-8718-70ab363d46df"), new DateTime(2024, 5, 17, 21, 39, 49, 898, DateTimeKind.Utc).AddTicks(847), "operator@optimus.com", null, "$2b$10$PqjDwjjW7TgEvJVa4IkDh.9O/4FC5Ve543OQB2e/.vSLXi.AAwvJi", 0 }
+                    { new Guid("0985d355-7d6a-4ecb-8feb-1d3123aee5c5"), new DateTime(2024, 5, 17, 21, 39, 49, 623, DateTimeKind.Utc).AddTicks(7658), "admin@optimus.com", null, "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 0 },
+                    { new Guid("0eacaa2e-a7dd-4db9-8718-70ab363d46df"), new DateTime(2024, 5, 17, 21, 39, 49, 898, DateTimeKind.Utc).AddTicks(847), "operador@optimus.com", null, "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", 1 }
                 });
 
             migrationBuilder.CreateIndex(
