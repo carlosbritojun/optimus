@@ -1,0 +1,860 @@
+{
+	"info": {
+		"_postman_id": "c49b2a66-846f-45c7-b949-c104c6aabfdc",
+		"name": "Optimus API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7967604",
+		"_collection_link": "https://cloudy-robot-3238.postman.co/workspace/Labs~84e515cc-fd7a-488f-ab2b-1e7e4599d2a9/collection/7967604-c49b2a66-846f-45c7-b949-c104c6aabfdc?action=share&source=collection_link&creator=7967604"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "Auth - OK",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"admin1@optimus.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Auth - NotFound",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"admin1@optimus.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Auth - Invalid Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"admin@optimus.com\",\r\n    \"password\": \"12345\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "GetAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetById - OK",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955889",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955889"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetById - NotFound",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955888",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955888"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - Created",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carlos Júnior\",\r\n    \"email\": \"carlosbritojun@gmail.com\",\r\n    \"cpf\": \"07623679708\",\r\n    \"phone\": \"99998888\",\r\n    \"address\": \"57113 Eduardo Marginal, Rio de Janeiro, Ilha do Natal\",\r\n    \"comments\": \"Teste de comentário\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - BadRequest EmailExists",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carlos Júnior\",\r\n    \"email\": \"carlosbritojun@gmail.com\",\r\n    \"cpf\": \"09042781742\",\r\n    \"phone\": \"99998888\",\r\n    \"address\": \"57113 Eduardo Marginal, Rio de Janeiro, Ilha do Natal\",\r\n    \"comments\": \"Teste de comentário\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - BadRequest CpfExists",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carlos Júnior\",\r\n    \"email\": \"carlosbritojun@gmail.com\",\r\n    \"cpf\": \"07623679708\",\r\n    \"phone\": \"99998888\",\r\n    \"address\": \"57113 Eduardo Marginal, Rio de Janeiro, Ilha do Natal\",\r\n    \"comments\": \"Teste de comentário\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - NoContent",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carlos Júnior\",\r\n    \"email\": \"carlosbritojun1@gmail.com\",\r\n    \"cpf\": \"09042781742\",\r\n    \"phone\": \"99998888\",\r\n    \"address\": \"57113 Eduardo Marginal, Rio de Janeiro, Ilha do Natal\",\r\n    \"comments\": \"Teste de comentário\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955889",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955889"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - BadRequest EmailExists",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carlos Júnior\",\r\n    \"email\": \"carlosbritojun@gmail.com\",\r\n    \"cpf\": \"09042781742\",\r\n    \"phone\": \"99998888\",\r\n    \"address\": \"57113 Eduardo Marginal, Rio de Janeiro, Ilha do Natal\",\r\n    \"comments\": \"Teste de comentário\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955889",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955889"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update -  BadRequest CpfExists",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Carlos Júnior\",\r\n    \"email\": \"carlosbritojun1@gmail.com\",\r\n    \"cpf\": \"07623679708\",\r\n    \"phone\": \"99998888\",\r\n    \"address\": \"57113 Eduardo Marginal, Rio de Janeiro, Ilha do Natal\",\r\n    \"comments\": \"Teste de comentário\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955889",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955889"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete - NotFound",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955880",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955880"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete - NoContent",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/customers/54d539a0-5c79-4f00-a132-4224a4955889",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"54d539a0-5c79-4f00-a132-4224a4955889"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "GetAll",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "GetById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetById - NotFound",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - Created",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produto de Teste\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 5,\r\n    \"salePrice\": 10,\r\n    \"comments\": \"Produto de Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - BadRequest - QuantityInStock = 0",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produto de Teste\",\r\n    \"quantityInStock\": 0,\r\n    \"costPrice\": 5,\r\n    \"salePrice\": 10,\r\n    \"comments\": \"Produto de Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - BadRequest - CostPrice <= 0",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produto de Teste\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 0,\r\n    \"salePrice\": 10,\r\n    \"comments\": \"Produto de Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - BadRequest - CostSale <= 0",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produto de Teste\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 10,\r\n    \"salePrice\": 0,\r\n    \"comments\": \"Produto de Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add - BadRequest - CostSale <= CostPrice",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produto de Teste\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 10,\r\n    \"salePrice\": 5,\r\n    \"comments\": \"Produto de Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - NoContent",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rústico Plástico Atum 2\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 7.0,\r\n    \"salePrice\": 14.0,\r\n    \"comments\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - BadRequest - QuantityStock = 0",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rústico Plástico Atum 2\",\r\n    \"quantityInStock\": 0,\r\n    \"costPrice\": 7.0,\r\n    \"salePrice\": 14.0,\r\n    \"comments\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - BadRequest - CostPrice <= 0",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rústico Plástico Atum 2\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 0,\r\n    \"salePrice\": 14.0,\r\n    \"comments\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - BadRequest - CostSale <= 0",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rústico Plástico Atum 2\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 10,\r\n    \"salePrice\": 0,\r\n    \"comments\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - BadRequest - CostSale <= CostPrice",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rústico Plástico Atum 2\",\r\n    \"quantityInStock\": 10,\r\n    \"costPrice\": 10,\r\n    \"salePrice\": 2,\r\n    \"comments\": \"Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0255639b-1e03-417a-b83f-2acb5ccdcec8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0255639b-1e03-417a-b83f-2acb5ccdcec8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - NotFound",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0365c970-0628-4a8d-b8d0-17b98d44b234",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0365c970-0628-4a8d-b8d0-17b98d44b234"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update - NoContent",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5219/api/v1/products/0365c970-0628-4a8d-b8d0-17b98d44b235",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5219",
+									"path": [
+										"api",
+										"v1",
+										"products",
+										"0365c970-0628-4a8d-b8d0-17b98d44b235"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "Generate",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "Products",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
