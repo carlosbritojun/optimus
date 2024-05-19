@@ -8,6 +8,7 @@ public class CreateProductRequestValidator : AbstractValidator<CreateProductRequ
     public CreateProductRequestValidator()
     {
         RuleFor(product => product.Name)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .NotEmpty()
             .Length(5, 100);
@@ -16,11 +17,13 @@ public class CreateProductRequestValidator : AbstractValidator<CreateProductRequ
             .GreaterThan(0);
 
         RuleFor(product => product.CostPrice)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .NotEmpty()
             .GreaterThanOrEqualTo(0);
 
         RuleFor(product => product.SalePrice)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .NotEmpty()
             .GreaterThanOrEqualTo(0)
