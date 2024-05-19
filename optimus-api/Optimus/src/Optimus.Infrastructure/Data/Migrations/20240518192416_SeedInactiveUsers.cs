@@ -346,11 +346,11 @@ namespace Optimus.Infrastructure.Data.Migrations
                 columns: new[] { "id", "address", "comments", "cpf", "email", "name", "phone" },
                 values: new object[,]
                 {
-                    { new Guid("093cdddc-de3a-4ef1-af4f-9986acfe94f2"), "50639 Enzo Rua, Rio Branco, Georgia", "Corporis culpa dolorem ut at qui eum minima tenetur.", "755.799.886-30", "Suelen_Reis@yahoo.com", "Suélen Reis", "(70) 98925-9618" },
-                    { new Guid("68a8c427-ad36-451f-8fc9-7abdbd9378fb"), "9789 Enzo Gabriel Marginal, Canoas, Japão", "consequatur", "896.071.104-71", "Silas.Costa99@gmail.com", "Silas Costa", "+55 (11) 7270-9025" },
-                    { new Guid("7a0b3ce6-e3d7-4295-ad12-8af0232b1cb4"), "7598 Albuquerque Travessa, Pelotas, Romênia", "Accusamus excepturi dolorem qui sit officiis voluptatem qui vel voluptatem.", "235.401.473-22", "Marli73@bol.com.br", "Marli Santos", "(80) 35052-8106" },
-                    { new Guid("b4b708eb-8ca6-435b-a8f9-4b2d6799a4f0"), "26553 Joana Travessa, Carapicuíba, Turquia", "Culpa quod non aliquam sed dolore.\nEt ab sapiente quis qui facilis.\nConsequatur delectus cupiditate sit in quam facilis.", "759.300.185-70", "Hugo.Macedo@gmail.com", "Hugo Macedo", "+55 (37) 6157-9538" },
-                    { new Guid("b700dd87-a75d-41a8-bc30-193c482352ee"), "94621 Pereira Rua, Paulista, Quirguistão", "Rerum omnis sed ipsa sint.\nRecusandae eaque repudiandae sunt possimus et.", "334.356.884-83", "Sara69@yahoo.com", "Sara Carvalho", "+55 (09) 5981-2727" }
+                    { new Guid("093cdddc-de3a-4ef1-af4f-9986acfe94f2"), "50639 Enzo Rua, Rio Branco, Georgia", "Corporis culpa dolorem ut at qui eum minima tenetur.", "75579988630", "Suelen_Reis@yahoo.com", "Suélen Reis", "(70) 98925-9618" },
+                    { new Guid("68a8c427-ad36-451f-8fc9-7abdbd9378fb"), "9789 Enzo Gabriel Marginal, Canoas, Japão", "consequatur", "89607110471", "Silas.Costa99@gmail.com", "Silas Costa", "(11) 7270-9025" },
+                    { new Guid("7a0b3ce6-e3d7-4295-ad12-8af0232b1cb4"), "7598 Albuquerque Travessa, Pelotas, Romênia", "Accusamus excepturi dolorem qui sit officiis voluptatem qui vel voluptatem.", "23540147322", "Marli73@bol.com.br", "Marli Santos", "(80) 35052-8106" },
+                    { new Guid("b4b708eb-8ca6-435b-a8f9-4b2d6799a4f0"), "26553 Joana Travessa, Carapicuíba, Turquia", "Culpa quod non aliquam sed dolore.\nEt ab sapiente quis qui facilis.\nConsequatur delectus cupiditate sit in quam facilis.", "75930018570", "Hugo.Macedo@gmail.com", "Hugo Macedo", "(37) 6157-9538" },
+                    { new Guid("b700dd87-a75d-41a8-bc30-193c482352ee"), "94621 Pereira Rua, Paulista, Quirguistão", "Rerum omnis sed ipsa sint.\nRecusandae eaque repudiandae sunt possimus et.", "33435688483", "Sara69@yahoo.com", "Sara Carvalho", "(09) 5981-2727" }
                 });
 
             migrationBuilder.InsertData(
