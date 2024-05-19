@@ -8,19 +8,23 @@ public class UpdateProductRequestValidator : AbstractValidator<UpdateProductRequ
     public UpdateProductRequestValidator()
     {
         RuleFor(product => product.Name)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .NotEmpty()
             .Length(5, 100);
 
         RuleFor(product => product.QuantityInStock)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .GreaterThan(0);
 
         RuleFor(product => product.CostPrice)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .NotEmpty()
             .GreaterThanOrEqualTo(0);
 
         RuleFor(product => product.SalePrice)
+            .Cascade(CascadeMode.StopOnFirstFailure)
             .NotNull()
             .NotEmpty()
             .GreaterThanOrEqualTo(0)
