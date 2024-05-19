@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Optimus.Api.Middlewares;
 
@@ -21,7 +22,7 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception exception)
         {
-            _logger.LogError(exception, "Exceção ocorrida: {Message}", exception.Message);
+            _logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
 
             var exceptionDetails = GetExceptionDetails(exception);
 
@@ -44,13 +45,26 @@ public class ExceptionHandlingMiddleware
         }
     }
 
-    private static ExceptionDetails GetExceptionDetails(Exception exception) =>
-        new ExceptionDetails(
+    private static ExceptionDetails GetExceptionDetails(Exception exception)
+    {
+        if (exception is DBConcurrencyException)
+        {
+            return new ExceptionDetails(
+                StatusCodes.Status409Conflict,
+                "Concurrency",
+                "Concurreny error",
+                "An unexpected concurrency error has occurred",
+                null);
+        }
+
+        return new ExceptionDetails(
                 StatusCodes.Status500InternalServerError,
                 "ServerError",
                 "Server error",
                 "An unexpected error has occurred",
                 null);
+    }
+        
     internal record ExceptionDetails(
         int Status,
         string Type,
