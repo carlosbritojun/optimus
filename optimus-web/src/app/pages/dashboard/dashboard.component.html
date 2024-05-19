@@ -1,0 +1,27 @@
+<ng-container>
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Total de Produtos</mat-card-title>
+        </mat-card-header>
+        <span>{{dashboard.totalOfProducts}}</span>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Total de Clientes</mat-card-title>
+        </mat-card-header>
+        <span>{{dashboard.totalOfCustomers}}</span>
+    </mat-card>
+</ng-container>
+
+
+
+<mat-card>
+    <span>Total de Produtos</span>
+    
+</mat-card>
+<mat-card>
+    <span>Total de Clientes</span>
+    {{dashboard.totalOfCustomers}}
+</mat-card>
+{{dashboard.productsTop10}}
+{{dashboard.productsWithNegativeOrZero}}
