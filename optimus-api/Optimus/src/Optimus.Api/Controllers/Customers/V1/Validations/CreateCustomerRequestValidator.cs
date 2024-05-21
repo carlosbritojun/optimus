@@ -9,28 +9,33 @@ public class CreateCustomerRequestValidator : AbstractValidator<CreateCustomerRe
     public CreateCustomerRequestValidator()
     {
         RuleFor(customer => customer.Name)
-            .NotNull()
-            .NotEmpty()
-            .Length(5, 100);
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotNull().WithMessage("O nome deve ser informado")
+            .NotEmpty().WithMessage("O nome não pode estar em branco")
+            .Length(5, 100).WithMessage("O nome deve ter entre 5 e 100 caracteres");
 
         RuleFor(customer => customer.Email)
-            .NotNull()
-            .NotEmpty()
-            .EmailAddress();
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotNull().WithMessage("O e-mail deve ser informado")
+            .NotEmpty().WithMessage("O e-mail pode estar em branco")
+            .EmailAddress().WithMessage("O e-mail informado é inválido");
 
         RuleFor(customer => customer.Cpf)
-            .NotNull()
-            .NotEmpty()
-            .Cpf();
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotNull().WithMessage("O CPF deve ser informado")
+            .NotEmpty().WithMessage("O CPF não pode estar em branco")
+            .Cpf().WithMessage("O CPF deve informado é inválido");
 
         RuleFor(customer => customer.Phone)
-           .NotNull()
-           .NotEmpty();
+            .Cascade(CascadeMode.StopOnFirstFailure)
+           .NotNull().WithMessage("O telefone deve ser informado")
+           .NotEmpty().WithMessage("O telefone não deve estar em branco");
 
         RuleFor(customer => customer.Address)
-            .NotNull()
-            .NotEmpty()
-            .Length(3, 200);
+            .Cascade(CascadeMode.StopOnFirstFailure)
+            .NotNull().WithMessage("O endereço deve ser informado")
+            .NotEmpty().WithMessage("O endereço não pode estar em branco")
+            .Length(3, 200).WithMessage("O endereço deve ter entre 3 e 200 caracteres");
 
         RuleFor(customer => customer.Comments)
            .MaximumLength(500);

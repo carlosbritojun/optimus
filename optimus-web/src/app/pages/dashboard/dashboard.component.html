@@ -1,27 +1,38 @@
-<ng-container>
-    <mat-card>
-        <mat-card-header>
-          <mat-card-title>Total de Produtos</mat-card-title>
-        </mat-card-header>
-        <span>{{dashboard.totalOfProducts}}</span>
-    </mat-card>
-    <mat-card>
-        <mat-card-header>
-          <mat-card-title>Total de Clientes</mat-card-title>
-        </mat-card-header>
-        <span>{{dashboard.totalOfCustomers}}</span>
-    </mat-card>
-</ng-container>
-
-
-
-<mat-card>
-    <span>Total de Produtos</span>
-    
-</mat-card>
-<mat-card>
-    <span>Total de Clientes</span>
-    {{dashboard.totalOfCustomers}}
-</mat-card>
-{{dashboard.productsTop10}}
-{{dashboard.productsWithNegativeOrZero}}
+<mat-grid-list cols="2" >
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Total de Clientes</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-icon>home</mat-icon>
+                {{ dashboard.totalOfCustomers }}
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Total de Produtos</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-icon>home</mat-icon>
+                {{ dashboard.totalOfProducts }}
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-card>
+            <mat-card-content>
+                <canvas baseChart type="bar" [data]="productsTop10"></canvas>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+        <mat-card>
+            <mat-card-content>
+                <canvas baseChart type="line" [data]="productsWithStockOrZero"></canvas>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

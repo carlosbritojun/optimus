@@ -3,7 +3,7 @@ export interface ILoginModel {
     password: string;
 }
 
-export interface IUser {
+export interface IUserModel {
     id: string;
     email: string;
     profile: string;

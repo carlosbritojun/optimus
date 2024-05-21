@@ -2,7 +2,7 @@ export interface IDashboardModel {
     totalOfProducts: number,
     totalOfCustomers: number,
     productsTop10: [],
-    productsWithNegativeOrZero: []
+    productsWithoutStockOrZero: []
 }
 
 export interface IProductTop10 {
@@ -11,7 +11,7 @@ export interface IProductTop10 {
     quantityInStock: number
 }
 
-export interface IProductWithNegativeOrZero {
+export interface IProductWithoutStockOrZero {
     id: string,
     name: string,
     quantityInStock: number

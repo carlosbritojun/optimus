@@ -1,0 +1,37 @@
+<div class="grid-container">
+  
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+  <h1 class="mat-h1">Login</h1>
+  <mat-card class="shipping-card">
+    <mat-card-content>
+
+      <div>
+        <ul>
+          <li *ngFor="let message of messages"> {{ message }}</li>
+        </ul>
+      </div>
+      
+      <div class="row">
+          <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="E-mail" formControlName="email">
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+              O E-mail é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+         
+      </div>
+      <div class="row">
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Senha" formControlName="password">
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            A senha é <strong>obrigatória</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Autenticar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+</div>

@@ -8,6 +8,18 @@ CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Não Recomendado!
+builder.Services.AddCors(setup =>
+{
+    setup.AddDefaultPolicy(policy =>
+    {
+        policy
+            .WithOrigins("*")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services
     .AddValidators()
     .AddApplication()
@@ -35,6 +47,9 @@ if (app.Environment.IsDevelopment())
 
     //app.ApplyMigrations();
 }
+
+//Não recomendado!
+app.UseCors();
 
 app.UseCustomExceptionHandler();
 

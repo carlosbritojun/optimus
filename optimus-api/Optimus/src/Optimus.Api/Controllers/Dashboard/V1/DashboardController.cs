@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Optimus.Api.Controllers.Dashboard.V1.Models;
 using Optimus.Api.Shared;
 using Optimus.Application.Features.Dashboard;
 
@@ -17,11 +18,11 @@ public sealed class DashboardController : OptimusBusControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<DashboardResponse>> Generate(CancellationToken token = default)
+    public async Task<ActionResult<DashboardApiResponse>> Generate(CancellationToken token = default)
     {
         var query = new GenerateDashboardQuery();
         var dashboard = await MemoryBus.Send(query, token);
 
-        return Ok(dashboard);
+        return Ok(DashboardApiResponse.From(dashboard));
     }
 }

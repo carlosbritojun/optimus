@@ -12,6 +12,6 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
   getData() : Observable<IDashboardModel> {
-    return this.http.get<IDashboardModel>("http://localhost:3000/dashboard");
+    return this.http.get<IDashboardModel>("http://localhost:5219/api/v1/dashboard");
   }
 }
