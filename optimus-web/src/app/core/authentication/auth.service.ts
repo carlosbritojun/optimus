@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
   
   login(model: any) : Observable<IUserModel> {
-    return this.http.post<IUserModel>(environment.apiUrl + "api/v1/auth", model);
+    return this.http.post<IUserModel>(`${environment.apiUrl}api/v1/auth`, model);
   }
 
   storeUser(user: any): void  {

@@ -52,7 +52,6 @@ internal sealed class GenerateDashboardQueryHandler : IRequestHandler<GenerateDa
         return await _context
             .Set<Product>()
             .AsNoTracking()
-            .Take(10)
             .Where(product => product.QuantityInStock <= 0)
             .OrderBy(product => product.QuantityInStock)
             .Select(product => new ProductsWithoutStockOrZero(

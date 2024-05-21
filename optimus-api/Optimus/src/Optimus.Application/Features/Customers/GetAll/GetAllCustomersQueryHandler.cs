@@ -18,9 +18,10 @@ internal sealed class GetAllCustomersQueryHandler : IRequestHandler<GetAllCustom
     {
         return await _context.Set<Customer>()
             .AsNoTracking()
+            .OrderBy(customer => customer.Name)
             .Select(customer => new CustomerListResponse(
-                customer.Id, 
-                customer.Name.Value, 
+                customer.Id,
+                customer.Name.Value,
                 customer.Email.Address))
             .ToListAsync();
     }

@@ -27,7 +27,7 @@ export class AuthComponent {
   onSubmit(): void {
     this.service.login(this.loginForm.value).subscribe(result => {
       this.service.storeUser(result);
-      this.router.navigateByUrl('/home');
+      this.router.navigate(['home']);
     }, err => { 
       console.log(err);
       this.showValidatonErrors(err) 

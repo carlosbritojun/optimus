@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
         return [
           { title: 'Produtos (Top 10)', cols: 1, rows: 1 , type: "top10Chart" },
           { title: 'Total de Clientes', cols: 1, rows: 1, type: "totalOfCustomers" },
-          { title: 'Produtos (Sem estoque no negativos)', cols: 1, rows: 1, type: "withNegativeOrZero" },
+          { title: 'Produtos (Sem estoque ou negativos)', cols: 1, rows: 1, type: "withNegativeOrZero" },
           { title: 'Total de Produtos', cols: 1, rows: 1, type: "totalOfProducts" }
         ];
       }
@@ -29,11 +29,24 @@ export class HomeComponent implements OnInit {
       return [
         { title: 'Produtos (Top 10)', cols: 2, rows: 1, type: "top10Chart" },
         { title: 'Total de Clientes', cols: 1, rows: 1, type: "totalOfCustomers" },
-        { title: 'Produtos (Sem estoque no negativos)', cols: 1, rows: 2, type: "withNegativeOrZero" },
+        { title: 'Produtos (Sem estoque ou negativos)', cols: 1, rows: 2, type: "withNegativeOrZero" },
         { title: 'Total de Produtos', cols: 1, rows: 1, type: "totalOfProducts" }
       ];
     })
   );
+
+  lineChartOptions: {
+    responsive:true,
+    maintainAspectRatio: true,
+    scales: {
+      x: {
+        beginAtZero: true
+      },
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.generate();
@@ -59,7 +72,7 @@ export class HomeComponent implements OnInit {
         {
           data : tops.map(product => product.quantityInStock),
           label: '10 Produtos com maior estoque',
-          fill: true
+          fill: false
         }
       ]
     }

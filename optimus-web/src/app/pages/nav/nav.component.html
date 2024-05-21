@@ -21,6 +21,11 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Optimus</span>
+      <span class="example-spacer"></span>
+      <span>{{ user }}</span>
+      <button mat-icon-button class="example-icon" (click)="logout()">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-toolbar>
 
     <router-outlet></router-outlet>

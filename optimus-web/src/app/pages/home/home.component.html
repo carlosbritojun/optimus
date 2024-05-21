@@ -1,4 +1,3 @@
-
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-grid-list cols="2" rowHeight="350px">
@@ -12,8 +11,8 @@
         <mat-card-content class="dashboard-card-content">
           <div *ngIf="card.type=='totalOfProducts'"><h1 class="total">{{ dashboard.totalOfProducts }}</h1></div>
           <div *ngIf="card.type=='totalOfCustomers'"><h1 class="total">{{ dashboard.totalOfCustomers }}</h1></div>
-          <div *ngIf="card.type=='top10Chart'" class="chart-container"><canvas baseChart type="line" [data]="productsTop10"></canvas></div>
-          <div *ngIf="card.type=='withNegativeOrZero'" class="chart-container"> <canvas style="height: 100px;" baseChart type="pie" [data]="productsWithoutStockOrZero"></canvas> </div>
+          <div *ngIf="card.type=='top10Chart'" class="chart-container"><canvas class="chart" baseChart type="line" [data]="productsTop10" [options]="lineChartOptions"></canvas></div>
+          <div *ngIf="card.type=='withNegativeOrZero'" class="chart-container"><canvas class="chart" baseChart type="pie" [data]="productsWithoutStockOrZero" [options]="lineChartOptions"></canvas> </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile> 

@@ -4,9 +4,9 @@
     <mat-card class="shipping-card">
       <mat-card-content>
 
-        <div>
+        <div *ngIf="messages.length > 0" class="messages" >
           <ul>
-            <li *ngFor="let message of messages"> {{ message }}</li>
+            <li *ngFor="let message of messages"><span>{{ message }}</span></li>
           </ul>
         </div>
 

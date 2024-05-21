@@ -18,6 +18,7 @@ internal sealed class GetAllProductsQueryHandler : IRequestHandler<GetAllProduct
     {
         return await _context.Set<Product>()
             .AsNoTracking()
+            .OrderBy(product => product.Name)
             .Select(product => new ProductListResponse(
                 product.Id,
                 product.Name.Value,

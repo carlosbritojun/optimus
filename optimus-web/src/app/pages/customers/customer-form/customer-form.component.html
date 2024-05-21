@@ -4,16 +4,16 @@
     <mat-card class="shipping-card">
       <mat-card-content>
 
-        <div>
+        <div *ngIf="messages.length > 0" class="messages" >
           <ul>
-            <li *ngFor="let message of messages"> {{ message }}</li>
+            <li *ngFor="let message of messages"><span>{{ message }}</span></li>
           </ul>
         </div>
 
         <div class="row">
           <mat-form-field class="full-width">
             <label for="name">Nome</label>
-            <input matInput type="text" placeholder="Nome" formControlName="name">
+            <input matInput type="text" formControlName="name">
             <mat-error *ngIf="customerForm.controls['name'].hasError('required')">
               O nome é <strong>obrigatório</strong>
             </mat-error>
@@ -23,7 +23,7 @@
         <div class="row">
             <mat-form-field class="full-width">
               <label for="email">E-mail</label>
-              <input matInput type="text" placeholder="E-mail" formControlName="email">
+              <input matInput type="text" formControlName="email">
               <mat-error *ngIf="customerForm.controls['email'].hasError('required')">
                 O E-mail é <strong>obrigatório</strong>
               </mat-error>
@@ -33,7 +33,7 @@
         <div class="row">
           <mat-form-field class="full-width">
             <label for="cpf">CPF</label>
-            <input matInput type="text" placeholder="CPF" formControlName="cpf">
+            <input matInput type="text" formControlName="cpf">
             <mat-error *ngIf="customerForm.controls['cpf'].hasError('required')">
               O CPF é <strong>obrigatório</strong>
             </mat-error>
@@ -43,7 +43,7 @@
         <div class="row">
           <mat-form-field class="full-width">
             <label for="phone">Telefone</label>
-            <input matInput type="text" placeholder="Telefone" formControlName="phone">
+            <input matInput type="text" formControlName="phone">
             <mat-error *ngIf="customerForm.controls['phone'].hasError('required')">
               O Telefone é <strong>obrigatório</strong>
             </mat-error>
@@ -53,7 +53,7 @@
         <div class="row">
           <mat-form-field class="full-width">
             <label for="address">Endereço</label>
-            <input matInput type="text" placeholder="Endereço" formControlName="address">
+            <input matInput type="text" formControlName="address">
             <mat-error *ngIf="customerForm.controls['address'].hasError('required')">
               O Endereço é <strong>obrigatório</strong>
             </mat-error>
@@ -63,7 +63,7 @@
         <div class="row">
           <mat-form-field class="full-width">
             <label for="comments">Observações</label>
-            <textarea matInput placeholder="Observações" formControlName="comments"></textarea>
+            <textarea matInput formControlName="comments"></textarea>
           </mat-form-field>
         </div>
     
