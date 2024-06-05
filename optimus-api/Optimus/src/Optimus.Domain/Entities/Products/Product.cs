@@ -5,15 +5,13 @@ namespace Optimus.Domain.Entities.Products;
 
 public sealed class Product : Entity
 {
-    private static string PrecoDeVendaInvalido(decimal preco) => $"Preco de venda inválido [{preco}]";
+    private static string InvalidSalePrice(decimal price) => $"Preco de venda inválido [{price}]";
 
-    public Product(Guid id, Name name, int quantityInStock, Money costPrice, Money salePrice, Comments comments)
+    private Product(Guid id, Name name, int quantityInStock, Comments? comments=null)
         : base(id)
     {
         Name = name;
         QuantityInStock = quantityInStock;
-        CostPrice = costPrice;
-        SalePrice = salePrice;
         Comments = comments;
         CreatedAt = DateTime.UtcNow;
     }
@@ -25,21 +23,25 @@ public sealed class Product : Entity
     public Comments? Comments { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
+    public static Product Create(Guid id, Name name, int quantityInStock, Money costPrice, Money salePrice, Comments? comments)
+    {
+        var product = new Product(id, name, quantityInStock, comments);
+        product.ChangePrices(costPrice, salePrice);
+        return product;
+    }
+
     public void ChangeBasicInfo(Name name, Comments? comments=null)
     {
         Name = name;
         Comments = comments;
     }
 
-    public void ChangePrices(Money costPrice, Money saleCost)
+    public void ChangePrices(Money costPrice, Money salePrice)
     {
-        if (costPrice.Value >= saleCost.Value)
-        {
-            throw new ArgumentOutOfRangeException(null, PrecoDeVendaInvalido(saleCost.Value));
-        }
+        InvalidPriceException.ThrowIf(costPrice.Value >= salePrice.Value, InvalidSalePrice(salePrice.Value));
 
         CostPrice = costPrice;
-        SalePrice = saleCost;
+        SalePrice = salePrice;
     }
 
     public void  ChangeStock(int newQuantity)

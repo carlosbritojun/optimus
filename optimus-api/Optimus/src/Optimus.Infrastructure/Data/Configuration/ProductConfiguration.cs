@@ -22,10 +22,10 @@ internal sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasConversion(comments => comments.Value, value => new Comments(value));
 
         builder.Property(product => product.CostPrice)
-            .HasConversion(custo => custo.Value, valor => new Money(valor));
+            .HasConversion(custo => custo.Value, valor => Money.Create(valor));
 
         builder.Property(product => product.SalePrice)
-            .HasConversion(sale => sale.Value, value => new Money(value));
+            .HasConversion(sale => sale.Value, value => Money.Create(value));
 
         builder.HasIndex(product => product.Name);
 

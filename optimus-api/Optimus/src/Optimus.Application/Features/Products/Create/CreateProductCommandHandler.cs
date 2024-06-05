@@ -26,12 +26,12 @@ internal sealed class CreateProductCommandHandler : IRequestHandler<CreateProduc
             return Result.Fail(ProductErrors.NameExists);
         }
 
-        var product = new Product(
+        var product = Product.Create(
             Guid.NewGuid(),
             name,
             request.QuantityInStock,
-            new Money(request.CostPrice),
-            new Money(request.SalePrice),
+            Money.Create(request.CostPrice),
+            Money.Create(request.SalePrice),
             new Comments(request.Comments));
 
         await _repository.AddAsync(product, token);

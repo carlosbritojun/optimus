@@ -34,7 +34,7 @@ internal sealed class UpdateProductCommandHandler : IRequestHandler<UpdateProduc
         }
 
         product.ChangeBasicInfo(name, new Comments(request.Comments));
-        product.ChangePrices(new Money(request.CostPrice), new Money(request.SalePrice));
+        product.ChangePrices(Money.Create(request.CostPrice), Money.Create(request.SalePrice));
         product.ChangeStock(request.QuantityInStock);
 
         _repository.Update(product);

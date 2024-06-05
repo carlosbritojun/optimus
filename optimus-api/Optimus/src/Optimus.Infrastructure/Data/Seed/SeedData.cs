@@ -40,14 +40,14 @@ internal static class SeedData
         {
             var faker = new Faker("pt_BR");
 
-            var cost = new Money(faker.Random.Int(5, 15));
+            var cost = Money.Create(faker.Random.Int(5, 15));
 
-            return new Product(
+            return Product.Create(
                 id: Guid.NewGuid(),
                 name: new Name(faker.Commerce.ProductName()),
                 quantityInStock: faker.Random.Int(-2, 10),
                 costPrice: cost,
-                salePrice: new Money(cost.Value * 2),
+                salePrice: Money.Create(cost.Value * 2),
                 comments: new Comments(faker.Commerce.ProductDescription())); 
         });
 

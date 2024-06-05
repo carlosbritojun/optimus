@@ -12,7 +12,9 @@ public class PasswordTests
         //Arrange
         var password = new Password(PasswordValue);
 
+
         //Act
+        password.GenerateHash();
         var result = password.Check(PasswordValue);
 
         //Assert
